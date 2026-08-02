@@ -81,11 +81,11 @@ Loại 2 : Đếm số ngón tay; Tay trái/ phải (Do giáo viên cấu hình)
 Loại 3 : Nhận diện học sinh dơ tay → Hệ thống tinh điểm ưu tiên -> Đề xuất gọi phát biểu
 Ta có 3 tập hợp : `X` - participation frequency, `Y` - Current capabilities, `Z` - Reaction speed
 Ánh xạ 3 tập hợp trên thành tập `X'`,` Y'`,` Z'` tương ứng sao cho mọi giá trị thuộc đoạn 0 và 1 <br>
-$$X'_i = \frac{\text{max}(X)-X_{i}}{\text{max}(X)-\text{min}(X)}; Y'_i = \frac{Y_{i}-\text{min}(Y)}{\text{max}(Y)-\text{min}(Y)}; Z'_{i} = \frac{\text{max}(Z)-Z_{i}}{\text{max}(Z)-\text{min}(Z)}$$ <br>
+$X'_i = \frac{\text{max}(X)-X_{i}}{\text{max}(X)-\text{min}(X)}; Y'_i = \frac{Y_{i}-\text{min}(Y)}{\text{max}(Y)-\text{min}(Y)}; Z'_{i} = \frac{\text{max}(Z)-Z_{i}}{\text{max}(Z)-\text{min}(Z)}$ <br>
 Ta đặt số điểm của câu hỏi là A tao có :
 - Nếu A lớn (câu hỏi khó, giá trị cao) : ưu tiên người có năng lực tốt (Y cao) và phản xạ nhanh (Z cao) để sớm tối ưu xác suất đúng. Hạn chế gọi người ít nói (X thấp) để tránh gây áp lực
 - Nếu A nhỏ (câu hỏi dễ, khuyến khích) : Ưu tiên người có điểm thấp (Y thấp) và ít phát biểu (X cao) để tạo động lực và cân bằng lớp học. <br>
-$$S_i = \alpha\times Z'_i + \beta\times X'_i + \gamma\times\frac{A}{A_{max}} × Y'_i + \delta\times\frac{1 - A}{A_{max}}\times(1 - Y'_i)$$ <br>
+$S_i = \alpha\times Z'_i + \beta\times X'_i + \gamma\times\frac{A}{A_{max}} × Y'_i + \delta\times\frac{1 - A}{A_{max}}\times(1 - Y'_i)$ <br>
 trong đó : 
 - $A_{max}$​ là điểm số tối đa có thể có của câu hỏi (ví dụ 10 hoặc 20).
 - `α`, `β`, `γ`, `δ` là trọng số do bạn tự đặt (mặc định gợi ý: `α = 0.3`, `β = 0.3`, `γ = 0.2`, `δ = 0.2`).
