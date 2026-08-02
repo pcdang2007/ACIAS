@@ -65,9 +65,7 @@ Mọi sự kiện đều được gắn **Timestamp**.
 ## III. Hệ thống AI
 ### A. Nhận dạng âm thanh
 Pipeline:
-$$
-\text{Audio stream} \to \text{Voice activity detection} \to \text{Speech recognition} \to \text{Command recognition} \to \text{Question matching}
-$$
+$$\text{Audio stream} \to \text{Voice activity detection} \to \text{Speech recognition} \to \text{Command recognition} \to \text{Question matching}$$
 Chức năng:
 - nhận biết giáo viên
 - nhận dạng câu lệnh
@@ -75,9 +73,7 @@ Chức năng:
 - bắt đầu/kết thúc phiên trả lời
 ### B. Nhận dạng hình ảnh
 Pipeline:
-$$
-\text{Video Stream} \to \text{Person Detection} \to \text{Seat Tracking} \to \text{Pose Estimation} \to \text{Hand Detection} \to \text{Finger Counting} \to \text{Answer Recognition}
-$$
+$$\text{Video Stream} \to \text{Person Detection} \to \text{Seat Tracking} \to \text{Pose Estimation} \to \text{Hand Detection} \to \text{Finger Counting} \to \text{Answer Recognition}$$
 Hệ thống ưu tiên **Seat Tracking** thay vì nhận diện khuôn mặt nhằm giảm yêu cầu dữ liệu sinh trắc học và tăng tính bảo mật.
 ### C. Nhận diện câu trả lời
 Loại 1 : Đếm số ngón tay (1 → A, 2 → B, 3 → C, 4 → D)
@@ -85,17 +81,11 @@ Loại 2 : Đếm số ngón tay; Tay trái/ phải (Do giáo viên cấu hình)
 Loại 3 : Nhận diện học sinh dơ tay → Hệ thống tinh điểm ưu tiên -> Đề xuất gọi phát biểu
 Ta có 3 tập hợp : `X` - participation frequency, `Y` - Current capabilities, `Z` - Reaction speed
 Ánh xạ 3 tập hợp trên thành tập `X'`,` Y'`,` Z'` tương ứng sao cho mọi giá trị thuộc đoạn 0 và 1
-$$
-X'_i = \frac{\text{max}(X)-X_{i}}{\text{max}(X)-\text{min}(X)};
-Y'_i = \frac{Y_{i}-\text{min}(Y)}{\text{max}(Y)-\text{min}(Y)};
-Z'_{i} = \frac{\text{max}(Z)-Z_{i}}{\text{max}(Z)-\text{min}(Z)}
-$$
+$$X'_i = \frac{\text{max}(X)-X_{i}}{\text{max}(X)-\text{min}(X)}; Y'_i = \frac{Y_{i}-\text{min}(Y)}{\text{max}(Y)-\text{min}(Y)}; Z'_{i} = \frac{\text{max}(Z)-Z_{i}}{\text{max}(Z)-\text{min}(Z)}$$
 Ta đặt số điểm của câu hỏi là A tao có :
 - Nếu A lớn (câu hỏi khó, giá trị cao) : ưu tiên người có năng lực tốt (Y cao) và phản xạ nhanh (Z cao) để sớm tối ưu xác suất đúng. Hạn chế gọi người ít nói (X thấp) để tránh gây áp lực
 - Nếu A nhỏ (câu hỏi dễ, khuyến khích) : Ưu tiên người có điểm thấp (Y thấp) và ít phát biểu (X cao) để tạo động lực và cân bằng lớp học.
-$$
-S_i = \alpha\times Z'_i + \beta\times X'_i + \gamma\times\frac{A}{A_{max}} × Y'_i + \delta\times\frac{1 - A}{A_{max}}\times(1 - Y'_i)
-$$
+$$S_i = \alpha\times Z'_i + \beta\times X'_i + \gamma\times\frac{A}{A_{max}} × Y'_i + \delta\times\frac{1 - A}{A_{max}}\times(1 - Y'_i)$$
 trong đó : 
 - $A_{max}$​ là điểm số tối đa có thể có của câu hỏi (ví dụ 10 hoặc 20).
 - `α`, `β`, `γ`, `δ` là trọng số do bạn tự đặt (mặc định gợi ý: `α = 0.3`, `β = 0.3`, `γ = 0.2`, `δ = 0.2`).
