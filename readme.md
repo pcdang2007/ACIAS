@@ -2,8 +2,8 @@ Hệ thông phân tích tương tác học sinh trong lớp học dựa trên Tr
 # ACIAS - AI Classroom Interaction Analytics System
 Hệ thống được xây dựng nhằm thu thập, phân tích và đánh giá mức độ tương tác của học sinh trong quá trình học tập thông qua thị giác máy tính, xử lý ngôn ngữ tự nhiên và nhận dạng giọng nói. Dữ liệu được tổng hợp theo thời gian thực nhằm hỗ trợ giáo viên điều hành lớp học và cung cấp cơ sở khách quan cho việc đánh giá quá trình học tập.
 ## I. Kiến trúc tổng thể
-Hệ thống được chia thành sáu tầng độc lập.
-$$\text{Presentation} \to \text{Application} \to \text{AI Processing} \to \text{Business Logic} \to \text{Data Access} \to  \text{Storage}$$
+Hệ thống được chia thành sáu tầng độc lập. <br>
+$$\text{Presentation} \to \text{Application} \to \text{AI Processing} \to \text{Business Logic} \to \text{Data Access} \to  \text{Storage}$$ <br>
 Trong đó :
 - **Presentation Layer:** giao diện Web/App.
 - **Application Layer:** quản lý người dùng, lớp học, câu hỏi và phiên học.
@@ -64,24 +64,24 @@ Lesson
 Mọi sự kiện đều được gắn **Timestamp**.
 ## III. Hệ thống AI
 ### A. Nhận dạng âm thanh
-Pipeline:
-$$\text{Audio stream} \to \text{Voice activity detection} \to \text{Speech recognition} \to \text{Command recognition} \to \text{Question matching}$$
+Pipeline: <br>
+$$\text{Audio stream} \to \text{Voice activity detection} \to \text{Speech recognition} \to \text{Command recognition} \to \text{Question matching}$$ <br>
 Chức năng:
 - nhận biết giáo viên
 - nhận dạng câu lệnh
 - xác định câu hỏi
 - bắt đầu/kết thúc phiên trả lời
 ### B. Nhận dạng hình ảnh
-Pipeline:
-$$\text{Video Stream} \to \text{Person Detection} \to \text{Seat Tracking} \to \text{Pose Estimation} \to \text{Hand Detection} \to \text{Finger Counting} \to \text{Answer Recognition}$$
+Pipeline: <br>
+$$\text{Video Stream} \to \text{Person Detection} \to \text{Seat Tracking} \to \text{Pose Estimation} \to \text{Hand Detection} \to \text{Finger Counting} \to \text{Answer Recognition}$$ <br>
 Hệ thống ưu tiên **Seat Tracking** thay vì nhận diện khuôn mặt nhằm giảm yêu cầu dữ liệu sinh trắc học và tăng tính bảo mật.
 ### C. Nhận diện câu trả lời
 Loại 1 : Đếm số ngón tay (1 → A, 2 → B, 3 → C, 4 → D)
 Loại 2 : Đếm số ngón tay; Tay trái/ phải (Do giáo viên cấu hình)
 Loại 3 : Nhận diện học sinh dơ tay → Hệ thống tinh điểm ưu tiên -> Đề xuất gọi phát biểu
 Ta có 3 tập hợp : `X` - participation frequency, `Y` - Current capabilities, `Z` - Reaction speed
-Ánh xạ 3 tập hợp trên thành tập `X'`,` Y'`,` Z'` tương ứng sao cho mọi giá trị thuộc đoạn 0 và 1
-$$X'_i = \frac{\text{max}(X)-X_{i}}{\text{max}(X)-\text{min}(X)}; Y'_i = \frac{Y_{i}-\text{min}(Y)}{\text{max}(Y)-\text{min}(Y)}; Z'_{i} = \frac{\text{max}(Z)-Z_{i}}{\text{max}(Z)-\text{min}(Z)}$$
+Ánh xạ 3 tập hợp trên thành tập `X'`,` Y'`,` Z'` tương ứng sao cho mọi giá trị thuộc đoạn 0 và 1<br>
+$$X'_i = \frac{\text{max}(X)-X_{i}}{\text{max}(X)-\text{min}(X)}; Y'_i = \frac{Y_{i}-\text{min}(Y)}{\text{max}(Y)-\text{min}(Y)}; Z'_{i} = \frac{\text{max}(Z)-Z_{i}}{\text{max}(Z)-\text{min}(Z)}$$<br>
 Ta đặt số điểm của câu hỏi là A tao có :
 - Nếu A lớn (câu hỏi khó, giá trị cao) : ưu tiên người có năng lực tốt (Y cao) và phản xạ nhanh (Z cao) để sớm tối ưu xác suất đúng. Hạn chế gọi người ít nói (X thấp) để tránh gây áp lực
 - Nếu A nhỏ (câu hỏi dễ, khuyến khích) : Ưu tiên người có điểm thấp (Y thấp) và ít phát biểu (X cao) để tạo động lực và cân bằng lớp học.
