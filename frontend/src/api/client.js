@@ -23,8 +23,10 @@ export function clearAuth() {
   localStorage.removeItem(USER_KEY);
 }
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 export async function api(path, { method = 'GET', body, headers = {}, params } = {}) {
-  let url = `/api${path}`;
+  let url = `${API_BASE}/api${path}`;
   if (params) {
     const qs = new URLSearchParams();
     Object.entries(params).forEach(([k, v]) => {
