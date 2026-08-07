@@ -1,0 +1,21 @@
+{
+  "name": "acias-backend",
+  "version": "1.0.0",
+  "description": "ACIAS - AI Classroom Interaction Analytics System (Backend)",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node src/db/seed.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "ws": "^8.18.0",
+    "xlsx": "^0.18.5"
+  }
+}
